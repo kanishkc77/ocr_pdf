@@ -1,15 +1,15 @@
-import os, ocrmypdf
+import os, ocrmypdf, tempfile
 from flask import Flask, request, redirect, url_for, render_template, send_from_directory
 from werkzeug.utils import secure_filename
 
-UPLOAD_FOLDER = os.path.dirname(os.path.abspath(__file__)) + '/uploads/'
-DOWNLOAD_FOLDER = os.path.dirname(os.path.abspath(__file__)) + '/downloads/'
+temp_directory_uploads = tempfile.TemporaryDirectory()
+temp_directory_downloads = tempfile.TemporaryDirectory()
+
 ALLOWED_EXTENSIONS = {'pdf', 'txt'}
 
 app = Flask(__name__, static_url_path="/static")
-DIR_PATH = os.path.dirname(os.path.realpath(__file__))
-app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
-app.config['DOWNLOAD_FOLDER'] = DOWNLOAD_FOLDER
+app.config['UPLOAD_FOLDER'] = temp_directory_uploads.name
+app.config['DOWNLOAD_FOLDER'] = temp_directory_downloads.name
 # limit upload size upto 8mb
 app.config['MAX_CONTENT_LENGTH'] = 100 * 1024 * 1024
 
