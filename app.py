@@ -29,6 +29,8 @@ def index():
             print('No file selected')
             return redirect(request.url)
         if file and allowed_file(file.filename):
+            for f in os.listdir(app.config['UPLOAD_FOLDER']):
+                os.remove(os.path.join(app.config['UPLOAD_FOLDER'], f))
             filename = secure_filename(file.filename)
             file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
             process_file(os.path.join(app.config['UPLOAD_FOLDER'], filename), filename)
@@ -43,7 +45,8 @@ def process_file(path, filename):
 
 def ocr_pdf(path, filename):
     input_file = path
-    filename = filename + '_OCR'
+    for f in os.listdir(app.config['DOWNLOAD_FOLDER']):
+        os.remove(os.path.join(app.config['DOWNLOAD_FOLDER'], f))
     output_file = os.path.join(app.config['DOWNLOAD_FOLDER'], filename)
     ocrmypdf.ocr(input_file, output_file, deskew=True)
 
@@ -51,7 +54,3 @@ def ocr_pdf(path, filename):
 @app.route('/uploads/<filename>')
 def uploaded_file(filename):
     return send_from_directory(app.config['DOWNLOAD_FOLDER'], filename, as_attachment=True)
-
-
-if __name__ == '__main__':
-    app.run(debug = False, host='0.0.0.0')
