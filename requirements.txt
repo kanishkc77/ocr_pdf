@@ -1,3 +1,5 @@
 ocrmypdf
+tesseract
 Flask
 werkzeug
+gunicorn
