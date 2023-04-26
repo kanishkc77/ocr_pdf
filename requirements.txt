@@ -1,6 +1,5 @@
 ocrmypdf
 tesseract
-tesseract-ocr
 Flask
 werkzeug
 gunicorn
