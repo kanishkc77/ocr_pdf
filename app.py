@@ -54,3 +54,6 @@ def ocr_pdf(path, filename):
 @app.route('/uploads/<filename>')
 def uploaded_file(filename):
     return send_from_directory(app.config['DOWNLOAD_FOLDER'], filename, as_attachment=True)
+
+if __name__ == "__main__":
+    app.run()
