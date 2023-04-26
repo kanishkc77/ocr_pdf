@@ -1,9 +1,9 @@
 FROM python:3.9-slim-buster
 
-RUN apt-get update && \
-    apt-get -qq -y install tesseract-ocr && \
-    apt-get -qq -y install libtesseract-dev \
-    apt-get -qq -y install ghostscript
+RUN sudo apt-get update && \
+    sudo apt-get -qq -y install tesseract-ocr && \
+    sudo apt-get -qq -y install libtesseract-dev \
+    sudo apt-get -qq -y install ghostscript
 
 WORKDIR /app
 
