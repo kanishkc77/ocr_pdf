@@ -1,7 +1,7 @@
 FROM python:3.9-slim-buster
 
 RUN apt-get update && \
-    apt-get install -y \
+    apt-get install -qq -y \
         tesseract-ocr \
         libtesseract-dev \
         ghostscript
