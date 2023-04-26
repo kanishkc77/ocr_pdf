@@ -1,6 +1,6 @@
 ocrmypdf
 pytesseract
-tesseract==4.1.1
+tesseract
 Flask
 werkzeug
 gunicorn
