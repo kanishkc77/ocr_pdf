@@ -1,6 +1,0 @@
-ocrmypdf
-pytesseract
-tesseract
-Flask
-werkzeug
-gunicorn
